@@ -1,0 +1,74 @@
+.goodInfo {
+  width: 100%;
+
+  @media screen and (min-width: 700px) {
+    width: 65%;
+  }
+}
+
+.goodHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 35px;
+  padding-bottom: 35px;
+
+  border-top: 1px solid #dfdfdf;
+  cursor: pointer;
+}
+
+.infoBlock {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  list-style: none;
+
+  transition: transform 200ms linear, opacity 400ms linear;
+  opacity: 0;
+  transform: translateY(-20%);
+}
+
+.item {
+  display: flex;
+
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  &:last-child {
+    margin-bottom: 70px;
+  }
+}
+
+.infoImg {
+  margin-right: 12px;
+}
+
+.infoFullDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoTitle {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.infoDescription {
+  color: rgb(72, 72, 72);
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
