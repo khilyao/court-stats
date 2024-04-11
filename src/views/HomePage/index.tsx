@@ -2,6 +2,7 @@ import HeroHeading from "components/HeroHeading";
 import { Goals } from "./HomePage.styled";
 import Accordeon from "components/Accordeon";
 import db from "tempDB.json";
+var romanize = require("romanize");
 
 const HomePage = () => {
   return (
@@ -16,7 +17,7 @@ const HomePage = () => {
       <Goals>Стратегічні цілі</Goals>
       {db.directions.map(({ name, sections }, index) => (
         <Accordeon key={index} sections={sections}>
-          {name}
+          {`${romanize(index + 1)} ${name}`}
         </Accordeon>
       ))}
     </div>

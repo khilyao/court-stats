@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Arrow from "assets/icons/arrow.svg";
-import s from "./goodInfo.module.scss";
+import { Link } from "react-router-dom";
+import s from "./Accordeon.module.scss";
+import { ReactComponent as Arrow } from "assets/icons/arrow.svg";
 
 type SubSection = {
   subSectionName: string;
@@ -16,7 +17,7 @@ type Section = {
 };
 
 type Props = {
-  sections: Section[];
+  sections?: Section[];
   children: string;
 };
 
@@ -32,31 +33,11 @@ const Accordeon = ({ sections, children }: Props) => {
         }}
       >
         <span className={s.infoBlock}>{children}</span>
-        <svg
+        <Arrow
           style={{
             transform: isMoreGoodInfoClicked ? "rotate(90deg) " : "",
           }}
-          width="17"
-          height="17"
-          viewBox="0 0 17 17"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1.85682 8.93057L15.999 8.93057"
-            stroke="black"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8.92789 1.85951L15.999 8.93057L8.92789 16.0016"
-            stroke="black"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        />
       </div>
       <ul
         className={s.list}
@@ -67,14 +48,19 @@ const Accordeon = ({ sections, children }: Props) => {
       >
         {isMoreGoodInfoClicked && (
           <>
-            {sections.map(({ sectionName }, index) => (
-              <li className={s.item} key={index}>
-                <div className={s.infoFullDesc}>
-                  <h2 className={s.infoTitle}>{sectionName}</h2>
-                  {/* <p className={s.infoDescription}>{desc}</p> */}
-                </div>
-              </li>
-            ))}
+            {sections &&
+              sections.map(({ sectionName }, index) => (
+                <li className={s.item} key={index}>
+                  <div className={s.infoFullDesc}>
+                    <Link to="/">
+                      <h2 className={s.infoTitle}>{`${
+                        index + 1
+                      } ${sectionName}`}</h2>
+                    </Link>
+                    {/* <p className={s.infoDescription}>{desc}</p> */}
+                  </div>
+                </li>
+              ))}
           </>
         )}
       </ul>
