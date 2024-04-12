@@ -15,8 +15,8 @@ const HomePage = () => {
         План роботи секретаріату Касаційного цивільного суду на 2024 рік
       </HeroHeading>
       <Goals>Стратегічні цілі</Goals>
-      {db.directions.map(({ name, sections }, index) => (
-        <Accordeon key={index} sections={sections}>
+      {db.directions.map(({ name, sections, direction }, index) => (
+        <Accordeon key={index} direction={direction} sections={sections}>
           {`${romanize(index + 1)} ${name}`}
         </Accordeon>
       ))}

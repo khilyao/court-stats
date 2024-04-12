@@ -1,6 +1,7 @@
 {
   "directions": [
     {
+      "direction": "docs",
       "name": "Документальне забезпечення",
       "sections": [
         {
@@ -105,6 +106,7 @@
       ]
     },
     {
+      "direction": "org",
       "name": "Організаційне забезпечення",
       "sections": [
         {
@@ -184,6 +186,7 @@
       ]
     },
     {
+      "direction": "inv",
       "name": "Розгляд звернень",
       "sections": [
         {

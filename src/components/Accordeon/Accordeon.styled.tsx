@@ -1,12 +1,14 @@
-.goodInfo {
+import styled from "styled-components";
+
+export const GoalInfoBlock = styled.div`
   width: 100%;
 
   @media screen and (min-width: 700px) {
     width: 65%;
   }
-}
+`;
 
-.goodHeading {
+export const GoalHeading = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,15 +18,15 @@
 
   border-top: 1px solid #dfdfdf;
   cursor: pointer;
-}
+`;
 
-.infoBlock {
+export const Preview = styled.span`
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 700;
   line-height: 1.2;
-}
+`;
 
-.list {
+export const List = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,9 +36,9 @@
   transition: transform 200ms linear, opacity 400ms linear;
   opacity: 0;
   transform: translateY(-20%);
-}
+`;
 
-.item {
+export const Item = styled.li`
   display: flex;
 
   &:not(:last-child) {
@@ -46,26 +48,22 @@
   &:last-child {
     margin-bottom: 70px;
   }
-}
+`;
 
-.infoImg {
-  margin-right: 12px;
-}
-
-.infoFullDesc {
+export const GoalFullDesc = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+`;
 
-.infoTitle {
+export const GoalTitle = styled.h2`
   font-size: 15px;
   font-weight: 700;
   line-height: 1.2;
-}
+`;
 
-.infoDescription {
+export const GoalDescription = styled.p`
   color: rgb(72, 72, 72);
   font-size: 14px;
   line-height: 1.5;
-}
+`;
