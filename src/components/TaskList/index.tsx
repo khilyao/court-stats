@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import TaskItem from "components/TaskItem";
-import { Task } from "types/task";
+import { SubSection } from "types/directionsTypes";
 
-type Props = { tasks: Task[] };
+type Props = { tasks: SubSection[] };
 
 const TaskList = ({ tasks }: Props) => {
   const { goalId, type } = useParams();

@@ -1,4 +1,7 @@
-export const firebaseConfig = {
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+
+const firebaseConfig = {
   apiKey: "AIzaSyAipOpdljm_LBb6koTb3dPnKW-dTdWtzx4",
   authDomain: "affairs-96f7d.firebaseapp.com",
   databaseURL:
@@ -9,3 +12,6 @@ export const firebaseConfig = {
   appId: "1:665433637308:web:70b73a243667c31f97abb9",
   measurementId: "G-YTRJWH0N9B",
 };
+
+initializeApp(firebaseConfig);
+export const db = getDatabase();

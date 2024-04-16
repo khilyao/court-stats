@@ -10,3 +10,9 @@ export type Section = {
   result?: number;
   subTitle?: string;
 };
+
+export type Direction = {
+  direction: string;
+  name: string;
+  sections: Section[];
+};

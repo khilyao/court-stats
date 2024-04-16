@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import {
+  StyledLink,
   GoalInfoBlock,
   GoalHeading,
   Preview,
@@ -8,8 +9,10 @@ import {
   Item,
   GoalFullDesc,
   GoalTitle,
+  Value,
+  Body,
 } from "./Accordeon.styled";
-import { Section } from "types/sections";
+import { Section } from "types/directionsTypes";
 import { ReactComponent as Arrow } from "assets/icons/arrow.svg";
 
 type Props = {
@@ -44,20 +47,24 @@ const Accordeon = ({ sections, direction, children }: Props) => {
         {isMoreGoodInfoClicked && (
           <>
             {sections &&
-              sections.map(({ sectionName, subSections = false }, index) => (
-                <Item key={index}>
-                  <GoalFullDesc>
-                    {subSections ? (
-                      <Link to={`/goals/${direction}/${index + 1}`}>
-                        <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
-                      </Link>
-                    ) : (
-                      <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
-                    )}
-                    {/* <GoalDescription >{desc}</GoalDescription> */}
-                  </GoalFullDesc>
-                </Item>
-              ))}
+              sections.map(
+                ({ sectionName, result, subSections = false }, index) => (
+                  <Item key={index}>
+                    <GoalFullDesc>
+                      {subSections ? (
+                        <StyledLink to={`/goals/${direction}/${index + 1}`}>
+                          <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
+                        </StyledLink>
+                      ) : (
+                        <Body>
+                          <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
+                          <Value style={{ marginTop: "10px" }}>{result}</Value>
+                        </Body>
+                      )}
+                    </GoalFullDesc>
+                  </Item>
+                )
+              )}
           </>
         )}
       </List>
