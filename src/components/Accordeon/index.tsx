@@ -10,10 +10,11 @@ import {
   GoalFullDesc,
   GoalTitle,
   Value,
+  ReadMore,
   Body,
+  StyledArrow,
 } from "./Accordeon.styled";
 import { Section } from "types/directionsTypes";
-import { ReactComponent as Arrow } from "assets/icons/arrow.svg";
 
 type Props = {
   sections?: Section[];
@@ -24,6 +25,10 @@ type Props = {
 const Accordeon = ({ sections, direction, children }: Props) => {
   const [isMoreGoodInfoClicked, setIsMoreGoodInfoClicked] = useState(false);
 
+  // const truncateString = (str: string, maxLength: number): string => {
+  //   return str.length > maxLength ? `${str.slice(0, maxLength)}...` : str;
+  // };
+
   return (
     <GoalInfoBlock>
       <GoalHeading
@@ -32,9 +37,9 @@ const Accordeon = ({ sections, direction, children }: Props) => {
         }}
       >
         <Preview>{children}</Preview>
-        <Arrow
+        <StyledArrow
           style={{
-            transform: isMoreGoodInfoClicked ? "rotate(90deg) " : "",
+            transform: isMoreGoodInfoClicked ? "rotate(90deg) scale(2)" : "",
           }}
         />
       </GoalHeading>
@@ -42,6 +47,7 @@ const Accordeon = ({ sections, direction, children }: Props) => {
         style={{
           transform: isMoreGoodInfoClicked ? "translateY(0)" : "",
           opacity: isMoreGoodInfoClicked ? "1" : "0",
+          marginBottom: isMoreGoodInfoClicked ? "20px" : "",
         }}
       >
         {isMoreGoodInfoClicked && (
@@ -54,11 +60,12 @@ const Accordeon = ({ sections, direction, children }: Props) => {
                       {subSections ? (
                         <StyledLink to={`/goals/${direction}/${index + 1}`}>
                           <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
+                          <ReadMore>Детальніше</ReadMore>
                         </StyledLink>
                       ) : (
                         <Body>
                           <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
-                          <Value style={{ marginTop: "10px" }}>{result}</Value>
+                          <Value>{result}</Value>
                         </Body>
                       )}
                     </GoalFullDesc>

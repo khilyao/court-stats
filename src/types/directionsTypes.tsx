@@ -1,7 +1,7 @@
 export type SubSection = {
   subSectionName: string;
   value?: number;
-  valueDesc?: string;
+  signature?: string;
 };
 
 export type Section = {

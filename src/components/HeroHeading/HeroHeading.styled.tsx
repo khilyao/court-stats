@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const HeroWrapper = styled.div`
+  flex-grow: 1;
+
   padding: 1.5rem;
+
   border-radius: 0.5rem;
   box-shadow: 0 0 #0000, 0 0 #0000, 0px 2px 8px 0px rgba(61, 61, 61, 0.16);
 `;
