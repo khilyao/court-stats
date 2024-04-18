@@ -14,6 +14,7 @@ import {
   Details,
   Head,
 } from "./GoalDetailsPage.styled";
+import TaskList from "components/TaskList";
 
 const GoalDetailsPage = () => {
   const navigate = useNavigate();
@@ -28,6 +29,18 @@ const GoalDetailsPage = () => {
   );
   const valueOfTasks = tasks.map(({ value }) => value);
   const sectionName = goal ? goal.sections[taskId].sectionName : "";
+
+  const plugin = {
+    id: "increase-legend-spacing",
+    beforeInit(chart: any) {
+      const originalFit = chart.legend.fit;
+
+      chart.legend.fit = function fit() {
+        originalFit.bind(chart.legend)();
+        this.height += 20;
+      };
+    },
+  };
 
   const data = {
     labels,
@@ -64,7 +77,7 @@ const GoalDetailsPage = () => {
     ],
   };
 
-  ChartJS.register(ArcElement, Tooltip, Legend);
+  ChartJS.register(ArcElement, Tooltip, Legend, plugin);
 
   return (
     <Details>
@@ -80,10 +93,21 @@ const GoalDetailsPage = () => {
       </Head>
       <StyledChart>
         <ChartWrapper>
-          <Doughnut data={data} />
+          <Doughnut
+            data={data}
+            options={{
+              plugins: {
+                legend: {
+                  align: "start",
+                },
+              },
+            }}
+          />
         </ChartWrapper>
       </StyledChart>
-      {/* <TaskList tasks={tasks} /> */}
+      <div style={{ marginTop: "50px" }}>
+        <TaskList tasks={tasks} />
+      </div>
     </Details>
   );
 };

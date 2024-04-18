@@ -2,13 +2,22 @@ import styled from "styled-components";
 import { ReactComponent as Home } from "assets/icons/home.svg";
 
 export const Details = styled.section`
-  padding: 50px;
+  padding-top: 50px;
+
+  @media screen and (min-width: 768px) {
+    padding: 50px;
+  }
 `;
 
 export const Head = styled.div`
   display: flex;
+  flex-direction: column;
 
   margin-bottom: 50px;
+
+  @media screen and (min-width: 440px) {
+    flex-direction: row;
+  }
 `;
 
 export const StyledHome = styled(Home)`
@@ -25,12 +34,21 @@ export const StyledHome = styled(Home)`
 `;
 
 export const StyledBtn = styled.button`
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+
+  margin-bottom: 20px;
+
   background-color: transparent;
   border: none;
 
-  margin-right: 30px;
-
   cursor: pointer;
+
+  @media screen and (min-width: 440px) {
+    margin: auto 0;
+    margin-right: 30px;
+  }
 `;
 
 export const StyledChart = styled.div`
@@ -40,8 +58,13 @@ export const StyledChart = styled.div`
 `;
 
 export const ChartWrapper = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
+
+  @media screen and (min-width: 440px) {
+    width: 400px;
+    height: 400px;
+  }
 
   @media screen and (min-width: 768px) {
     width: 500px;
