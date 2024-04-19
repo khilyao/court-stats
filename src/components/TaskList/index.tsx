@@ -5,8 +5,6 @@ import { List } from "./TaskList.styled";
 type Props = { tasks: SubSection[] };
 
 const TaskList = ({ tasks }: Props) => {
-  console.log(tasks);
-
   return (
     <div>
       <List>

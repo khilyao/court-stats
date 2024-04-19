@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { ReactComponent as Home } from "assets/icons/home.svg";
 
 export const Details = styled.section`
-  padding-top: 50px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   @media screen and (min-width: 768px) {
     padding: 50px;
@@ -48,6 +49,16 @@ export const StyledBtn = styled.button`
   @media screen and (min-width: 440px) {
     margin: auto 0;
     margin-right: 30px;
+  }
+`;
+
+export const TotalResult = styled.h2`
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
   }
 `;
 

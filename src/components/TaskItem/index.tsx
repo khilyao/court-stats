@@ -1,4 +1,4 @@
-import { Signature, Remark } from "./TaskItem.styled";
+import { Signature, Remark, Title } from "./TaskItem.styled";
 
 type Props = {
   signature?: string;
@@ -12,7 +12,7 @@ const TaskItem = ({ children, signature }: Props) => {
 
   return (
     <Remark>
-      <h2>{capitalizeTitle(children)}</h2>
+      <Title>{capitalizeTitle(children)}</Title>
       {signature && <Signature>({signature})</Signature>}
     </Remark>
   );

@@ -6,12 +6,25 @@ export const Remark = styled.li`
   }
 `;
 
+export const Title = styled.h2`
+  font-size: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
 export const Signature = styled.span`
   display: inline-block;
 
   margin-top: 4px;
 
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: 500;
 
   color: #343434;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 `;

@@ -13,6 +13,7 @@ import {
   StyledChart,
   Details,
   Head,
+  TotalResult,
 } from "./GoalDetailsPage.styled";
 import TaskList from "components/TaskList";
 
@@ -23,6 +24,7 @@ const GoalDetailsPage = () => {
   const directions = useSelector(directionsSelector);
   const goal = directions.find(({ direction }) => direction === type);
   const tasks = (goal ? goal.sections[taskId].subSections : []) as SubSection[];
+  const total = tasks.reduce((acc, { value = 0 }) => (acc += value), 0);
   const labels = tasks.map(
     ({ subSectionName }) =>
       subSectionName.charAt(0).toUpperCase() + subSectionName.slice(1)
@@ -91,6 +93,7 @@ const GoalDetailsPage = () => {
         </StyledBtn>
         {goal && <HeroHeading>{`${goalId} ${sectionName}`}</HeroHeading>}
       </Head>
+      <TotalResult>{`Сумарний результат: ${total}`}</TotalResult>
       <StyledChart>
         <ChartWrapper>
           <Doughnut
