@@ -93,7 +93,7 @@ const GoalDetailsPage = () => {
         </StyledBtn>
         {goal && <HeroHeading>{`${goalId} ${sectionName}`}</HeroHeading>}
       </Head>
-      <TotalResult>{`Сумарний результат: ${total}`}</TotalResult>
+      <TotalResult>{`Загальна кількість: ${total}`}</TotalResult>
       <StyledChart>
         <ChartWrapper>
           <Doughnut
