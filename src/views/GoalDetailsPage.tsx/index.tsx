@@ -4,6 +4,7 @@ import { SubSection } from "types/directionsTypes";
 import { useSelector } from "react-redux";
 import { directionsSelector } from "store/directions/directionSelectors";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { motion } from "framer-motion";
 import { Doughnut } from "react-chartjs-2";
 import HeroHeading from "components/HeroHeading";
 import {
@@ -34,6 +35,7 @@ const GoalDetailsPage = () => {
 
   const plugin = {
     id: "increase-legend-spacing",
+
     beforeInit(chart: any) {
       const originalFit = chart.legend.fit;
 
@@ -94,20 +96,29 @@ const GoalDetailsPage = () => {
         {goal && <HeroHeading>{`${goalId} ${sectionName}`}</HeroHeading>}
       </Head>
       <TotalResult>{`Загальна кількість: ${total}`}</TotalResult>
-      <StyledChart>
-        <ChartWrapper>
-          <Doughnut
-            data={data}
-            options={{
-              plugins: {
-                legend: {
-                  align: "start",
+      <motion.div
+        initial={{ opacity: 0, scale: 0.75 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <StyledChart>
+          <ChartWrapper>
+            <Doughnut
+              data={data}
+              options={{
+                plugins: {
+                  legend: {
+                    align: "start",
+                  },
                 },
-              },
-            }}
-          />
-        </ChartWrapper>
-      </StyledChart>
+                animation: {
+                  animateScale: true,
+                },
+              }}
+            />
+          </ChartWrapper>
+        </StyledChart>
+      </motion.div>
       <div style={{ marginTop: "50px" }}>
         <TaskList tasks={tasks} />
       </div>

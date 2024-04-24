@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReactComponent as Arrow } from "assets/icons/arrow.svg";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 interface GoalFullDescProps {
   $isAccordeonOpen?: boolean;
@@ -67,7 +68,7 @@ export const List = styled.ul`
   }
 `;
 
-export const Item = styled.li`
+export const Item = styled(motion.li)`
   display: flex;
   justify-content: center;
 
@@ -122,8 +123,6 @@ export const GoalTitle = styled.h2`
 export const ReadMore = styled.span`
   display: inline-block;
   max-width: 125px;
-
-  margin-top: 20px;
 
   padding: 6px 10px;
 

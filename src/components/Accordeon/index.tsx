@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 import {
   StyledLink,
@@ -55,12 +56,27 @@ const Accordeon = ({ sections, direction, children }: Props) => {
             {sections &&
               sections.map(
                 ({ sectionName, result, subSections = false }, index) => (
-                  <Item key={index}>
+                  <Item
+                    key={index}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <GoalFullDesc>
                       {subSections ? (
                         <StyledLink to={`/goals/${direction}/${index + 1}`}>
                           <GoalTitle>{`${index + 1} ${sectionName}`}</GoalTitle>
-                          <ReadMore>Детальніше</ReadMore>
+                          <motion.button
+                            style={{
+                              marginTop: 20,
+                              outline: "none",
+                              background: "none",
+                              border: "none",
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <ReadMore>Детальніше</ReadMore>
+                          </motion.button>
                         </StyledLink>
                       ) : (
                         <Body>
