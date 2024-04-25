@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { ReactComponent as Home } from "assets/icons/home.svg";
 
 export const Details = styled.section`
@@ -14,7 +15,7 @@ export const Head = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 
   @media screen and (min-width: 440px) {
     flex-direction: row;
@@ -62,6 +63,20 @@ export const TotalResult = styled.h2`
   }
 `;
 
+export const StyledLegend = styled.section`
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IconBox = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const StyledChart = styled.div`
   display: flex;
   align-items: center;
@@ -69,8 +84,8 @@ export const StyledChart = styled.div`
 `;
 
 export const ChartWrapper = styled.div`
-  width: 350px;
-  height: 350px;
+  width: 360px;
+  height: 360px;
 
   @media screen and (min-width: 440px) {
     width: 400px;
@@ -78,7 +93,7 @@ export const ChartWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
   }
 `;

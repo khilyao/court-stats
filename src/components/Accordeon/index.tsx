@@ -26,10 +26,6 @@ type Props = {
 const Accordeon = ({ sections, direction, children }: Props) => {
   const [isMoreGoodInfoClicked, setIsMoreGoodInfoClicked] = useState(false);
 
-  // const truncateString = (str: string, maxLength: number): string => {
-  //   return str.length > maxLength ? `${str.slice(0, maxLength)}...` : str;
-  // };
-
   return (
     <GoalInfoBlock>
       <GoalHeading

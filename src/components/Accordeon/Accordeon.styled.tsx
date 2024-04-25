@@ -135,6 +135,7 @@ export const ReadMore = styled.span`
 
   transition: background-color 100ms ease-in, color 100ms ease-in,
     box-shadow 100ms ease-in;
+  cursor: pointer;
 
   &:hover,
   &:focus {

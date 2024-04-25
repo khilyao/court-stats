@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-// import TaskList from "components/TaskList";
 import { SubSection } from "types/directionsTypes";
 import { useSelector } from "react-redux";
 import { directionsSelector } from "store/directions/directionSelectors";
@@ -7,6 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { motion } from "framer-motion";
 import { Doughnut } from "react-chartjs-2";
 import HeroHeading from "components/HeroHeading";
+
 import {
   StyledHome,
   StyledBtn,
@@ -15,8 +15,11 @@ import {
   Details,
   Head,
   TotalResult,
+  StyledLegend,
+  IconBox,
 } from "./GoalDetailsPage.styled";
 import TaskList from "components/TaskList";
+import TipArrow from "components/TipArrow/index";
 
 const GoalDetailsPage = () => {
   const navigate = useNavigate();
@@ -24,7 +27,15 @@ const GoalDetailsPage = () => {
   const taskId = Number(goalId) - 1;
   const directions = useSelector(directionsSelector);
   const goal = directions.find(({ direction }) => direction === type);
+  const goalTotalSections = goal ? goal.sections.length : 0;
   const tasks = (goal ? goal.sections[taskId].subSections : []) as SubSection[];
+  const previousTaskSectionName =
+    goalId && goal && taskId >= 1 && goal.sections[taskId - 1].sectionName;
+  const nextTaskSectionName =
+    goalId &&
+    goal &&
+    taskId < goalTotalSections - 1 &&
+    goal.sections[taskId + 1].sectionName;
   const total = tasks.reduce((acc, { value = 0 }) => (acc += value), 0);
   const labels = tasks.map(
     ({ subSectionName }) =>
@@ -89,36 +100,49 @@ const GoalDetailsPage = () => {
         <StyledBtn>
           <StyledHome
             onClick={() => {
-              navigate(-1);
+              navigate("/");
             }}
           />
         </StyledBtn>
         {goal && <HeroHeading>{`${goalId} ${sectionName}`}</HeroHeading>}
       </Head>
       <TotalResult>{`Загальна кількість: ${total}`}</TotalResult>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <StyledChart>
-          <ChartWrapper>
-            <Doughnut
-              data={data}
-              options={{
-                plugins: {
-                  legend: {
-                    align: "start",
+
+      <StyledLegend>
+        {Number(goalId) > 1 && (
+          <IconBox to={`/goals/${type}/${goalId && Number(goalId) - 1}`}>
+            <TipArrow placeholder={previousTaskSectionName} direction="left" />
+          </IconBox>
+        )}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.75 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7 }}
+        >
+          <StyledChart>
+            <ChartWrapper>
+              <Doughnut
+                data={data}
+                options={{
+                  plugins: {
+                    legend: {
+                      align: "start",
+                    },
                   },
-                },
-                animation: {
-                  animateScale: true,
-                },
-              }}
-            />
-          </ChartWrapper>
-        </StyledChart>
-      </motion.div>
+                  animation: {
+                    animateScale: true,
+                  },
+                }}
+              />
+            </ChartWrapper>
+          </StyledChart>
+        </motion.div>
+        {Number(goalId) > 0 && taskId < goalTotalSections - 1 && (
+          <IconBox to={`/goals/${type}/${goalId && Number(goalId) + 1}`}>
+            <TipArrow placeholder={nextTaskSectionName} direction="right" />
+          </IconBox>
+        )}
+      </StyledLegend>
       <div style={{ marginTop: "50px" }}>
         <TaskList tasks={tasks} />
       </div>
