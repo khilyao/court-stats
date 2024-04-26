@@ -37,6 +37,7 @@ export const StyledHome = styled(Home)`
 
 export const StyledBtn = styled.button`
   display: inline-block;
+
   width: 40px;
   height: 40px;
 
@@ -81,6 +82,8 @@ export const StyledChart = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  min-height: 100px;
 `;
 
 export const ChartWrapper = styled.div`

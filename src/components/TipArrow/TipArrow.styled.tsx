@@ -18,23 +18,22 @@ export const TipWrapper = styled(motion.div)<TipWrapperProps>`
   flex-direction: column;
   align-items: center;
 
-  width: 170px;
+  width: 130px;
 
   padding: 10px;
 
   font-weight: 500;
 
   color: #000;
-  background-color: #f9f2ef;
+  background-color: #f8f8f8;
   border-radius: 8px;
 
   transition: all 150ms linear;
 
-  box-shadow: 0 0 #f9f2ef, 0 0 #f9f2ef, 0px 2px 6px 2px rgba(61, 61, 61, 0.15);
+  box-shadow: 0 0 #f8f8f8, 0 0 #f8f8f8, 0px 2px 6px 2px rgba(61, 61, 61, 0.15);
   cursor: pointer;
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: #fff;
     transform: scale(1.1);
     background-color: #002a49;
@@ -49,15 +48,13 @@ export const Placeholder = styled.span`
 `;
 
 export const ArrowLeft = styled(ArrLeft)`
-  ${TipWrapper}:hover &,
-  ${TipWrapper}:focus & {
+  ${TipWrapper}:hover & {
     fill: #fff;
   }
 `;
 
 export const ArrowRight = styled(ArrRight)`
-  ${TipWrapper}:hover &,
-  ${TipWrapper}:focus & {
+  ${TipWrapper}:hover & {
     fill: #fff;
   }
 `;

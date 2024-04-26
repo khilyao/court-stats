@@ -28,6 +28,7 @@ const GoalDetailsPage = () => {
   const directions = useSelector(directionsSelector);
   const goal = directions.find(({ direction }) => direction === type);
   const goalTotalSections = goal ? goal.sections.length : 0;
+  const totalResult = goal && goal.sections[taskId].result;
   const tasks = (goal ? goal.sections[taskId].subSections : []) as SubSection[];
   const previousTaskSectionName =
     goalId && goal && taskId >= 1 && goal.sections[taskId - 1].sectionName;
@@ -36,12 +37,15 @@ const GoalDetailsPage = () => {
     goal &&
     taskId < goalTotalSections - 1 &&
     goal.sections[taskId + 1].sectionName;
-  const total = tasks.reduce((acc, { value = 0 }) => (acc += value), 0);
-  const labels = tasks.map(
-    ({ subSectionName }) =>
-      subSectionName.charAt(0).toUpperCase() + subSectionName.slice(1)
-  );
-  const valueOfTasks = tasks.map(({ value }) => value);
+  const total =
+    tasks && tasks.reduce((acc, { value = 0 }) => (acc += value), 0);
+  const labels =
+    tasks &&
+    tasks.map(
+      ({ subSectionName }) =>
+        subSectionName.charAt(0).toUpperCase() + subSectionName.slice(1)
+    );
+  const valueOfTasks = tasks && tasks.map(({ value }) => value);
   const sectionName = goal ? goal.sections[taskId].sectionName : "";
 
   const plugin = {
@@ -106,7 +110,9 @@ const GoalDetailsPage = () => {
         </StyledBtn>
         {goal && <HeroHeading>{`${goalId} ${sectionName}`}</HeroHeading>}
       </Head>
-      <TotalResult>{`Загальна кількість: ${total}`}</TotalResult>
+      <TotalResult>{`Загальна кількість: ${
+        total || totalResult || 0
+      }`}</TotalResult>
 
       <StyledLegend>
         {Number(goalId) > 1 && (
@@ -120,21 +126,23 @@ const GoalDetailsPage = () => {
           transition={{ duration: 0.7 }}
         >
           <StyledChart>
-            <ChartWrapper>
-              <Doughnut
-                data={data}
-                options={{
-                  plugins: {
-                    legend: {
-                      align: "start",
+            {tasks && (
+              <ChartWrapper>
+                <Doughnut
+                  data={data}
+                  options={{
+                    plugins: {
+                      legend: {
+                        align: "start",
+                      },
                     },
-                  },
-                  animation: {
-                    animateScale: true,
-                  },
-                }}
-              />
-            </ChartWrapper>
+                    animation: {
+                      animateScale: true,
+                    },
+                  }}
+                />
+              </ChartWrapper>
+            )}
           </StyledChart>
         </motion.div>
         {Number(goalId) > 0 && taskId < goalTotalSections - 1 && (
@@ -143,9 +151,11 @@ const GoalDetailsPage = () => {
           </IconBox>
         )}
       </StyledLegend>
-      <div style={{ marginTop: "50px" }}>
-        <TaskList tasks={tasks} />
-      </div>
+      {tasks && (
+        <div style={{ marginTop: "50px" }}>
+          <TaskList tasks={tasks} />
+        </div>
+      )}
     </Details>
   );
 };
