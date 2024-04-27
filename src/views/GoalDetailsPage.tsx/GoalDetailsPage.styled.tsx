@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Home } from "assets/icons/home.svg";
 
 export const Details = styled.section`
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   @media screen and (min-width: 768px) {
     padding: 50px;

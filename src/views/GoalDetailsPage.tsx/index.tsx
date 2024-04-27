@@ -37,6 +37,18 @@ const GoalDetailsPage = () => {
     goal &&
     taskId < goalTotalSections - 1 &&
     goal.sections[taskId + 1].sectionName;
+
+  const sliceString = (str: string) => {
+    const splittedStr = str.split(" ");
+
+    if (splittedStr.length <= 4) {
+      return splittedStr.join(" ");
+    }
+    splittedStr.splice(4, 30);
+
+    return splittedStr.join(" ") + "..";
+  };
+
   const total =
     tasks && tasks.reduce((acc, { value = 0 }) => (acc += value), 0);
   const labels =
@@ -110,14 +122,24 @@ const GoalDetailsPage = () => {
         </StyledBtn>
         {goal && <HeroHeading>{`${goalId} ${sectionName}`}</HeroHeading>}
       </Head>
-      <TotalResult>{`Загальна кількість: ${
-        total || totalResult || 0
-      }`}</TotalResult>
+      <TotalResult
+        style={{
+          position: !tasks ? "absolute" : "static",
+          top: !tasks ? "270px" : "0px",
+          left: !tasks ? "50%" : "0px",
+          translate: !tasks ? "-50%" : "",
+        }}
+      >{`Загальна кількість: ${total || totalResult || 0}`}</TotalResult>
 
-      <StyledLegend>
+      <StyledLegend style={{ top: !tasks ? 50 : 0 }}>
         {Number(goalId) > 1 && (
           <IconBox to={`/goals/${type}/${goalId && Number(goalId) - 1}`}>
-            <TipArrow placeholder={previousTaskSectionName} direction="left" />
+            <TipArrow
+              placeholder={
+                previousTaskSectionName && sliceString(previousTaskSectionName)
+              }
+              direction="left"
+            />
           </IconBox>
         )}
         <motion.div
@@ -147,7 +169,12 @@ const GoalDetailsPage = () => {
         </motion.div>
         {Number(goalId) > 0 && taskId < goalTotalSections - 1 && (
           <IconBox to={`/goals/${type}/${goalId && Number(goalId) + 1}`}>
-            <TipArrow placeholder={nextTaskSectionName} direction="right" />
+            <TipArrow
+              placeholder={
+                nextTaskSectionName && sliceString(nextTaskSectionName)
+              }
+              direction="right"
+            />
           </IconBox>
         )}
       </StyledLegend>

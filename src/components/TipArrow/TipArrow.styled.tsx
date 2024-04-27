@@ -11,12 +11,10 @@ type TipWrapperProps = {
 
 export const TipWrapper = styled(motion.div)<TipWrapperProps>`
   position: absolute;
-  top: 50%;
+  top: 20%;
   ${({ direction }) => (direction === "left" ? "left: 0;" : "right: 0;")}
 
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
+  display: none;
 
   width: 130px;
 
@@ -39,6 +37,14 @@ export const TipWrapper = styled(motion.div)<TipWrapperProps>`
     background-color: #002a49;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   }
+
+  @media screen and (min-width: 1024px) {
+    top: 50%;
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Placeholder = styled.span`
@@ -48,12 +54,16 @@ export const Placeholder = styled.span`
 `;
 
 export const ArrowLeft = styled(ArrLeft)`
+  transition: fill 150ms linear;
+
   ${TipWrapper}:hover & {
     fill: #fff;
   }
 `;
 
 export const ArrowRight = styled(ArrRight)`
+  transition: fill 150ms linear;
+
   ${TipWrapper}:hover & {
     fill: #fff;
   }
