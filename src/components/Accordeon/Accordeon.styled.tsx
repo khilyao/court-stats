@@ -128,6 +128,7 @@ export const ReadMore = styled.span`
 
   font-weight: 500;
 
+  color: #000;
   background-color: #f5f2f0;
   border: 1px solid #000;
   border-radius: 4px;
