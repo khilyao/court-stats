@@ -1,13 +1,26 @@
 import HeroHeading from "components/HeroHeading";
-import { Goals } from "./HomePage.styled";
+import { Goals, LoaderWrapper } from "./HomePage.styled";
 import Accordeon from "components/Accordeon";
-import { directionsSelector } from "store/directions/directionSelectors";
+import DatePicker from "components/DatePicker";
+import { recordsSelector } from "store/slices/selectors";
 import { useSelector } from "react-redux";
+import SyncLoader from "react-spinners/SyncLoader";
 
 var romanize = require("romanize");
 
 const HomePage = () => {
-  const directions = useSelector(directionsSelector);
+  const records = useSelector(recordsSelector);
+  const dates = records.map(({ date }) => date);
+
+  if (!records || records.length === 0) {
+    return (
+      <LoaderWrapper>
+        <SyncLoader size={50} color="#002a49" />
+      </LoaderWrapper>
+    );
+  }
+
+  const directions = records[0].directions;
 
   return (
     <div
@@ -15,6 +28,19 @@ const HomePage = () => {
         marginTop: "50px",
       }}
     >
+      <DatePicker dates={dates} />
+      {/* <ul>
+        {records.map(({ date }, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              dispatch(chooseDate(date));
+            }}
+          >
+            {date}
+          </li>
+        ))}
+      </ul> */}
       <HeroHeading direction="План">
         План роботи секретаріату Касаційного цивільного суду на 2024 рік
       </HeroHeading>

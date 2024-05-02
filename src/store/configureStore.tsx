@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import initDirections from "./directions/directionSlice";
+import initRecords from "./slices/recordsSlice";
+import chooseDate from "./slices/currentDateSlice";
 
 const store = configureStore({
-  reducer: { directions: initDirections },
+  reducer: { records: initRecords, currentDate: chooseDate },
 });
 export type RootState = ReturnType<typeof store.getState>;
 

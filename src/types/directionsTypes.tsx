@@ -16,3 +16,8 @@ export type Direction = {
   name: string;
   sections: Section[];
 };
+
+export type Record = {
+  date: string;
+  directions: Direction[];
+};
