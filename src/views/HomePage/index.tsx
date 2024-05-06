@@ -29,18 +29,6 @@ const HomePage = () => {
       }}
     >
       <DatePicker dates={dates} />
-      {/* <ul>
-        {records.map(({ date }, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              dispatch(chooseDate(date));
-            }}
-          >
-            {date}
-          </li>
-        ))}
-      </ul> */}
       <HeroHeading direction="План">
         План роботи секретаріату Касаційного цивільного суду на 2024 рік
       </HeroHeading>

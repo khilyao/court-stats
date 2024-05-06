@@ -31,10 +31,10 @@ const GoalDetailsPage = () => {
   const directions = records.find(
     ({ date }) => date === currentDate
   )?.directions;
-  console.log(currentDate);
-  console.log(directions);
+
   const goal =
     directions && directions.find(({ direction }) => direction === type);
+
   const goalTotalSections = goal ? goal.sections.length : 0;
   const totalResult = goal && goal.sections[taskId].result;
   const tasks = (goal ? goal.sections[taskId].subSections : []) as SubSection[];

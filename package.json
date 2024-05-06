@@ -2,6 +2,7 @@
   "name": "court-stats",
   "version": "0.1.0",
   "private": true,
+  "author": "Khilya Oleksandr <sfwew19@gmail.com>",
   "dependencies": {
     "@amcharts/amcharts5": "^5.9.1",
     "@reduxjs/toolkit": "^2.2.3",
