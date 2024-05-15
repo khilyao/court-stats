@@ -5,6 +5,10 @@ export const Goals = styled.h2`
 `;
 
 export const LoaderWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+
   width: 100vw;
   height: 100vh;
 

@@ -26,6 +26,7 @@ const DatePicker = ({ dates }: Props) => {
   return (
     <>
       <select
+        react-datepicker="true"
         name="selected-date"
         value={selectedDate}
         onChange={handleDateChange}

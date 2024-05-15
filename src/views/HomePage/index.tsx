@@ -28,10 +28,12 @@ const HomePage = () => {
         marginTop: "50px",
       }}
     >
-      <DatePicker dates={dates} />
       <HeroHeading direction="План">
         План роботи секретаріату Касаційного цивільного суду на 2024 рік
       </HeroHeading>
+      <div style={{ margin: "20px 0 10px" }}>
+        <DatePicker dates={dates} />
+      </div>
       <Goals>Стратегічні цілі</Goals>
       {directions.map(({ name, sections, direction }, index) => (
         <Accordeon key={index} direction={direction} sections={sections}>
