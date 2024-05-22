@@ -1,6 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { chooseDate } from "store/slices/currentDateSlice";
+import {
+  DropdownWrapper,
+  DropdownButton,
+  DropdownMenu,
+  DropdownMenuItem,
+} from "./DatePicker.styled";
 import { currentDateSelector } from "store/slices/selectors";
 
 interface Props {
@@ -11,33 +17,54 @@ const DatePicker = ({ dates }: Props) => {
   const reversedDates = dates.slice(0).reverse();
   const dispatch = useDispatch();
   const currentDate = useSelector(currentDateSelector);
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(currentDate);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSelectedDate(currentDate);
   }, [currentDate]);
 
-  const handleDateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const date = e.target.value;
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleDateChange = (date: string) => {
     setSelectedDate(date);
     dispatch(chooseDate(date));
+    setIsOpen(false);
   };
 
   return (
-    <>
-      <select
-        react-datepicker="true"
-        name="selected-date"
-        value={selectedDate}
-        onChange={handleDateChange}
-      >
-        {reversedDates.map((date) => (
-          <option value={date} key={date}>
-            {date}
-          </option>
-        ))}
-      </select>
-    </>
+    <DropdownWrapper ref={dropdownRef}>
+      <DropdownButton onClick={handleToggle}>{selectedDate}</DropdownButton>
+      {isOpen && (
+        <DropdownMenu>
+          {reversedDates.map((date) => (
+            <DropdownMenuItem key={date} onClick={() => handleDateChange(date)}>
+              {date}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenu>
+      )}
+    </DropdownWrapper>
   );
 };
 

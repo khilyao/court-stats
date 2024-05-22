@@ -7,6 +7,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { motion } from "framer-motion";
 import { Doughnut } from "react-chartjs-2";
 import HeroHeading from "components/HeroHeading";
+import { useEffect, useState } from "react";
+import Modal from "components/Modal";
+import tutorialMessages from "components/Modal/tutorialMessages.json";
 
 import {
   StyledHome,
@@ -24,7 +27,7 @@ import TipArrow from "components/TipArrow/index";
 
 const GoalDetailsPage = () => {
   const navigate = useNavigate();
-  const { type, goalId } = useParams();
+  const { type, goalId } = useParams<{ type: string; goalId: string }>();
   const taskId = Number(goalId) - 1;
   const records = useSelector(recordsSelector);
   const currentDate = useSelector(currentDateSelector);
@@ -32,8 +35,7 @@ const GoalDetailsPage = () => {
     ({ date }) => date === currentDate
   )?.directions;
 
-  const goal =
-    directions && directions.find(({ direction }) => direction === type);
+  const goal = directions?.find(({ direction }) => direction === type);
 
   const goalTotalSections = goal ? goal.sections.length : 0;
   const totalResult = goal && goal.sections[taskId].result;
@@ -57,15 +59,12 @@ const GoalDetailsPage = () => {
     return splittedStr.join(" ") + "..";
   };
 
-  const total =
-    tasks && tasks.reduce((acc, { value = 0 }) => (acc += value), 0);
-  const labels =
-    tasks &&
-    tasks.map(
-      ({ subSectionName }) =>
-        subSectionName.charAt(0).toUpperCase() + subSectionName.slice(1)
-    );
-  const valueOfTasks = tasks && tasks.map(({ value }) => value);
+  const total = tasks?.reduce((acc, { value = 0 }) => (acc += value), 0);
+  const labels = tasks?.map(
+    ({ subSectionName }) =>
+      subSectionName.charAt(0).toUpperCase() + subSectionName.slice(1)
+  );
+  const valueOfTasks = tasks?.map(({ value }) => value);
   const sectionName = goal ? goal.sections[taskId].sectionName : "";
 
   const plugin = {
@@ -79,6 +78,30 @@ const GoalDetailsPage = () => {
         this.height += 20;
       };
     },
+  };
+
+  const [tutorialStep, setTutorialStep] = useState(0);
+
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate("/");
+      } else if (e.key === "ArrowLeft" && Number(goalId) > 1) {
+        navigate(`/goals/${type}/${Number(goalId) - 1}`);
+      } else if (e.key === "ArrowRight" && Number(goalId) < goalTotalSections) {
+        navigate(`/goals/${type}/${Number(goalId) + 1}`);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeydown);
+    };
+  }, [navigate, goalId, goalTotalSections, type, tutorialStep]);
+
+  const handleNext = () => {
+    setTutorialStep((prevStep) => prevStep + 1);
   };
 
   const data = {
@@ -141,7 +164,7 @@ const GoalDetailsPage = () => {
 
       <StyledLegend style={{ top: !tasks ? 50 : 0 }}>
         {Number(goalId) > 1 && (
-          <IconBox to={`/goals/${type}/${goalId && Number(goalId) - 1}`}>
+          <IconBox to={`/goals/${type}/${Number(goalId) - 1}`}>
             <TipArrow
               placeholder={
                 previousTaskSectionName && sliceString(previousTaskSectionName)
@@ -175,8 +198,8 @@ const GoalDetailsPage = () => {
             )}
           </StyledChart>
         </motion.div>
-        {Number(goalId) > 0 && taskId < goalTotalSections - 1 && (
-          <IconBox to={`/goals/${type}/${goalId && Number(goalId) + 1}`}>
+        {Number(goalId) < goalTotalSections && (
+          <IconBox to={`/goals/${type}/${Number(goalId) + 1}`}>
             <TipArrow
               placeholder={
                 nextTaskSectionName && sliceString(nextTaskSectionName)
@@ -191,6 +214,11 @@ const GoalDetailsPage = () => {
           <TaskList tasks={tasks} />
         </div>
       )}
+      <Modal
+        tip={tutorialMessages[tutorialStep]}
+        onNext={handleNext}
+        totalTips={2}
+      />
     </Details>
   );
 };
