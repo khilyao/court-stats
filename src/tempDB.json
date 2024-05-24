@@ -1,6 +1,6 @@
 [
   {
-    "date": "16.04.2024",
+    "date": "Січень, Лютий, Березень",
     "directions": [
       {
         "direction": "docs",
@@ -235,7 +235,7 @@
     ]
   },
   {
-    "date": "16.05.2024",
+    "date": "Квітень",
     "directions": [
       {
         "direction": "docs",
@@ -244,68 +244,69 @@
           {
             "sectionName": "Зареєстровано всього",
             "subSections": [
-              { "subSectionName": "касаційних скарг", "value": 4989 },
-              { "subSectionName": "апеляційних скарг", "value": 31 },
+              { "subSectionName": "касаційних скарг", "value": 1903 },
+              { "subSectionName": "апеляційних скарг", "value": 13 },
               {
                 "subSectionName": "клопотань про визначення підсудності",
-                "value": 82
+                "value": 26
               },
               {
                 "subSectionName": "заяв за нововиявленими обставинами",
-                "value": 15
+                "value": 8
               },
               {
                 "subSectionName": "заяв за виключними обставинами",
-                "value": 11
+                "value": 5
               },
-              { "subSectionName": "справ", "value": 2332 },
+              { "subSectionName": "справ", "value": 821 },
               {
                 "subSectionName": "додаткових матеріалів (заяв / клопотань тощо)",
-                "value": 9553
+                "value": 3515,
+                "signature": "3273/242"
               },
               {
                 "subSectionName": "поштових повідомлень (зворотних повідомлень, листів-повернень)",
-                "value": 20430,
-                "signature": "12154/8276"
+                "value": 6781,
+                "signature": "4122/2659"
               },
               {
                 "subSectionName": "документів загального діловодства",
-                "value": 1821
+                "value": 624
               }
             ]
           },
           {
             "sectionName": "Документи, що надійшли через",
             "subSections": [
-              { "subSectionName": "Електронний суд", "value": 4770 },
-              { "subSectionName": "Електронна пошта", "value": 1162 },
+              { "subSectionName": "Електронний суд", "value": 2031 },
+              { "subSectionName": "Електронна пошта", "value": 323 },
               {
                 "subSectionName": "АТ «Укрпошта» ",
-                "value": 6849
+                "value": 2555
               },
               {
                 "subSectionName": "Приймальня громадян, «Скриня»",
-                "value": 2020
+                "value": 731
               }
             ]
           },
           {
             "sectionName": "Відправлено документів всього",
             "subSections": [
-              { "subSectionName": "простої", "value": 192 },
-              { "subSectionName": "рекомендованої", "value": 689 },
+              { "subSectionName": "простої", "value": 96 },
+              { "subSectionName": "рекомендованої", "value": 421 },
               {
                 "subSectionName": "з повідомленням про вручення",
-                "value": 23593
+                "value": 7652
               },
               {
                 "subSectionName": "передано кур'єром",
-                "value": 395
+                "value": 163
               },
-              { "subSectionName": "посилки та бандеролі", "value": 1349 },
+              { "subSectionName": "посилки та бандеролі", "value": 738 },
               {
                 "subSectionName": "засобами електронного зв’язку",
-                "value": 1358
+                "value": 404
               }
             ]
           },
@@ -314,31 +315,35 @@
             "subSections": [
               {
                 "subSectionName": "справ (поштою / кур’єром)",
-                "value": 1744,
-                "signature": "1349/395"
+                "value": 738,
+                "signature": "575/163"
               },
               {
                 "subSectionName": "томів (поштою / кур’єром)",
-                "value": 5127,
-                "signature": "4049/1078"
+                "value": 1900,
+                "signature": "1319/581"
               }
             ]
           },
           {
             "sectionName": "Використано конвертів",
-            "result": 24421
+            "result": 8580
           },
           {
             "sectionName": "Поштові витрати (грн)",
-            "result": 1914030
+            "result": 672678
           },
           {
             "sectionName": "Архів",
             "subSections": [
-              { "subSectionName": "Здано до архіву", "value": 0 },
-              { "subSectionName": "проваджень", "value": 0 },
+              { "subSectionName": "Прийнято на зберігання всього", "value": 0 },
+              { "subSectionName": "Судових проваджень", "value": 0 },
               {
-                "subSectionName": "документів на знищення",
+                "subSectionName": "Справ постійного терміну зберігання",
+                "value": 0
+              },
+              {
+                "subSectionName": "Документів на знищення",
                 "value": 0
               },
               {
@@ -356,43 +361,43 @@
           {
             "sectionName": "Забезпечено проведення нарад усього",
             "subSections": [
-              { "subSectionName": "голови Касаційного суду", "value": 3 },
+              { "subSectionName": "Голови Касаційного суду", "value": 2 },
               {
-                "subSectionName": "заступника керівника Апарату – керівника секретаріату",
-                "value": 2
+                "subSectionName": "Заступника керівника Апарату – керівника секретаріату",
+                "value": 3
               },
               {
-                "subSectionName": "секретарів судових палат",
-                "value": 0
+                "subSectionName": "Секретарів судових палат",
+                "value": 4
               }
             ]
           },
           {
-            "sectionName": "Забезпечено проведення зборів суддів ",
-            "result": 2
+            "sectionName": "Забезпечено проведення зборів суддів Верховного Суду у Касаційному цивільному суді",
+            "result": 1
           },
           {
             "sectionName": "Забезпечено проведення судових засідань усього",
             "subSections": [
               { "subSectionName": "судових палат", "value": 1 },
-              { "subSectionName": "об’єднаної палати", "value": 36 },
+              { "subSectionName": "об’єднаної палати", "value": 10 },
               {
                 "subSectionName": "у режимі відеоконференції",
-                "value": 12
+                "value": 2
               },
               {
                 "subSectionName": "з викликом сторін",
-                "value": 35
+                "value": 9
               },
               {
                 "subSectionName": "письмове провадження",
-                "value": 1744
+                "value": 647
               }
             ]
           },
           {
             "sectionName": "Проведено ознайомлень із матеріалами справ ",
-            "result": 82
+            "result": 26
           },
           {
             "sectionName": "Проведено засідань робочих груп, комісій, комітетів у Касаційному суді / Великій Палаті",
@@ -402,7 +407,7 @@
           {
             "sectionName": "Взято участь у засіданнях робочих груп, комісій, комітетів та інших заходах, проведених іншими організаторами",
             "subTitle": "(у розрахунок береться кількість заходів, а не учасників)",
-            "result": 27
+            "result": 9
           },
           {
             "sectionName": "Організовано та проведено Касаційним судом (семінарів, тренінгів, круглих столів тощо) усього",
@@ -419,9 +424,9 @@
             "subSections": [
               {
                 "subSectionName": "виготовлено порядків ведення / денних",
-                "value": 3
+                "value": 2
               },
-              { "subSectionName": "виготовлено протоколів", "value": 3 },
+              { "subSectionName": "виготовлено протоколів", "value": 2 },
               {
                 "subSectionName": "виготовлено проєктів рішень (протокольних)",
                 "value": 2
@@ -430,7 +435,7 @@
           },
           {
             "sectionName": "Здійснено редагування та коректуру документів (кількість сторінок) ",
-            "result": 7139
+            "result": 2377
           }
         ]
       },
@@ -441,14 +446,14 @@
           {
             "sectionName": "Зареєстровано всього",
             "subSections": [
-              { "subSectionName": "звернень", "value": 667 },
+              { "subSectionName": "звернень", "value": 209 },
               {
                 "subSectionName": "запитів на отримання публічної інформації",
-                "value": 56
+                "value": 12
               },
               {
                 "subSectionName": "адвокатських запитів",
-                "value": 26
+                "value": 10
               },
               {
                 "subSectionName": "звернень / запитів народних депутатів України",
@@ -458,11 +463,11 @@
           },
           {
             "sectionName": "Надано письмових відповідей на звернення та запити",
-            "result": 748
+            "result": 276
           },
           {
             "sectionName": "Опрацьовано телефонних дзвінків (надано довідок, консультацій тощо)",
-            "result": 0
+            "result": 1250
           },
           {
             "sectionName": "Організовано прийом громадян заступником керівника Апарату Верховного Суду – керівником секретаріату (осіб)",

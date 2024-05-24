@@ -2,7 +2,7 @@ import HeroHeading from "components/HeroHeading";
 import { Goals, LoaderWrapper } from "./HomePage.styled";
 import Accordeon from "components/Accordeon";
 import DatePicker from "components/DatePicker";
-import { recordsSelector } from "store/slices/selectors";
+import { currentDateSelector, recordsSelector } from "store/slices/selectors";
 import { useSelector } from "react-redux";
 import SyncLoader from "react-spinners/SyncLoader";
 
@@ -10,6 +10,7 @@ var romanize = require("romanize");
 
 const HomePage = () => {
   const records = useSelector(recordsSelector);
+  const currentDate = useSelector(currentDateSelector);
   const dates = records.map(({ date }) => date);
 
   if (!records || records.length === 0) {
@@ -20,7 +21,8 @@ const HomePage = () => {
     );
   }
 
-  const directions = records[0].directions;
+  const directions =
+    records.find(({ date }) => date === currentDate)?.directions ?? [];
 
   return (
     <div
