@@ -28,10 +28,6 @@ export const StyledArrow = styled(Arrow)`
 export const GoalInfoBlock = styled.div`
   width: 100%;
   font-family: "Helvetica Neue", sans-serif;
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-  }
 `;
 
 export const GoalHeading = styled.div`

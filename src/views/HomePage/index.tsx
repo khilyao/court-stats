@@ -36,6 +36,7 @@ const HomePage = () => {
       <div style={{ margin: "20px 0 10px" }}>
         <DatePicker dates={dates} />
       </div>
+
       <Goals>Стратегічні цілі</Goals>
       {directions.map(({ name, sections, direction }, index) => (
         <Accordeon key={index} direction={direction} sections={sections}>

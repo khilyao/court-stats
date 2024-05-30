@@ -337,7 +337,14 @@
             "sectionName": "Архів",
             "subSections": [
               { "subSectionName": "Прийнято на зберігання всього", "value": 0 },
-              { "subSectionName": "Судових проваджень", "value": 0 },
+              {
+                "subSectionName": "Судових проваджень (зберігання в діловодстві)",
+                "value": 1075
+              },
+              {
+                "subSectionName": "Судових проваджень (архівне зберігання)",
+                "value": 0
+              },
               {
                 "subSectionName": "Справ постійного терміну зберігання",
                 "value": 0

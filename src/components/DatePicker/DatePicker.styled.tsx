@@ -1,62 +1,47 @@
 import styled from "styled-components";
-import calendarIcon from "assets/calendar-icon.png";
+import { Slider } from "@mui/material";
 
-export const DropdownWrapper = styled.div`
-  position: relative;
-  display: inline-block;
-`;
+export const SliderContainer = styled.div`
+  padding: 20px;
 
-export const DropdownButton = styled.button`
-  appearance: none;
-  padding: 10px;
-  padding-left: 40px;
-
-  font-size: 16px;
-
-  color: #002949;
-  background-color: #f0f8ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-
-  background-image: url(${calendarIcon});
-  background-repeat: no-repeat;
-  background-size: 24px;
-  background-position: 10px center;
-
-  transition: border-color 0.3s ease;
-
-  &:hover {
-    border-color: #aaa;
-  }
-
-  &:focus {
-    border-color: #007bff;
+  @media screen and (min-width: 1024px) {
+    padding: 40px;
   }
 `;
 
-export const DropdownMenu = styled.ul`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1;
-  min-width: 160px;
-  padding: 8px 0;
-  margin: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  list-style-type: none;
-`;
+export const StyledSlider = styled(Slider)`
+  & .MuiSlider-thumb {
+    width: 40px;
+    height: 20px;
+    background-color: #25507b;
+    border-radius: 3px;
+    border: 2px solid #2b2b71;
+    background-image: linear-gradient(
+      45deg,
+      #fff 25%,
+      transparent 25%,
+      transparent 50%,
+      #fff 50%,
+      #fff 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 10px 10px;
+  }
 
-export const DropdownMenuItem = styled.li`
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  & .MuiSlider-thumb:hover,
+  & .MuiSlider-thumb.Mui-focusVisible,
+  & .MuiSlider-thumb.Mui-active {
+    box-shadow: none;
+  }
 
-  &:hover {
-    background-color: #f0f0f0;
+  .MuiSlider-track {
+    /* background-color: #9c27b0; */
+    border: none;
+  }
+
+  .MuiSlider-rail {
+    opacity: 1;
+    /* color: #9c27b0; */
   }
 `;

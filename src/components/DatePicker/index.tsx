@@ -1,70 +1,55 @@
-import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { chooseDate } from "store/slices/currentDateSlice";
-import {
-  DropdownWrapper,
-  DropdownButton,
-  DropdownMenu,
-  DropdownMenuItem,
-} from "./DatePicker.styled";
+import { StyledSlider, SliderContainer } from "./DatePicker.styled";
+import debounce from "debounce";
 import { currentDateSelector } from "store/slices/selectors";
+import { useCallback, useEffect, useState } from "react";
 
 interface Props {
   dates: string[];
 }
 
 const DatePicker = ({ dates }: Props) => {
-  const reversedDates = dates.slice(0).reverse();
   const dispatch = useDispatch();
   const currentDate = useSelector(currentDateSelector);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(currentDate);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [sliderValue, setSliderValue] = useState(
+    dates.indexOf(currentDate) + 1
+  );
+  const getValueLabel = (value: number) => {
+    return dates[Math.round(value) - 1];
+  };
+
+  const debouncedDispatch = useCallback(
+    debounce((value: number) => {
+      console.log(value);
+      dispatch(chooseDate(dates[value]));
+    }, 50),
+    [dispatch, dates]
+  );
 
   useEffect(() => {
-    setSelectedDate(currentDate);
-  }, [currentDate]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    setSliderValue(dates.indexOf(currentDate) + 1);
   }, []);
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleDateChange = (date: string) => {
-    setSelectedDate(date);
-    dispatch(chooseDate(date));
-    setIsOpen(false);
-  };
-
   return (
-    <DropdownWrapper ref={dropdownRef}>
-      <DropdownButton onClick={handleToggle}>{selectedDate}</DropdownButton>
-      {isOpen && (
-        <DropdownMenu>
-          {reversedDates.map((date) => (
-            <DropdownMenuItem key={date} onClick={() => handleDateChange(date)}>
-              {date}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenu>
-      )}
-    </DropdownWrapper>
+    <SliderContainer>
+      <StyledSlider
+        aria-label="Date picker"
+        value={sliderValue}
+        getAriaLabel={() => "dasd"}
+        color={"primary"}
+        valueLabelDisplay="auto"
+        valueLabelFormat={getValueLabel}
+        step={0.001}
+        onChange={(_, value) => {
+          const number = Math.round(Number(value) - 1);
+          debouncedDispatch(number);
+          setSliderValue(value as number);
+        }}
+        min={1}
+        max={dates.length}
+      />
+    </SliderContainer>
   );
 };
 
