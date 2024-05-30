@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { Slider } from "@mui/material";
 
 export const SliderContainer = styled.div`
+  background-color: #fafafa;
   padding: 20px;
+
+  border-radius: 8px;
 
   @media screen and (min-width: 1024px) {
     padding: 40px;
@@ -36,12 +39,26 @@ export const StyledSlider = styled(Slider)`
   }
 
   .MuiSlider-track {
-    /* background-color: #9c27b0; */
     border: none;
+    height: 6px;
   }
 
   .MuiSlider-rail {
     opacity: 1;
-    /* color: #9c27b0; */
+    height: 6px;
   }
+
+  .MuiSlider-mark {
+    position: static;
+  }
+`;
+
+export const HighlightedMark = styled.div<{ selected: boolean }>`
+  list-style: none;
+  transition: color 200ms linear, transform 100ms linear;
+  font-family: "Roboto condensed";
+  font-weight: 600;
+  font-size: 16px;
+  transform: ${(props) => (props.selected ? "scale(1.1)" : "")};
+  color: ${(props) => (props.selected ? "#2f2f97" : "black")};
 `;

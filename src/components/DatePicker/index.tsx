@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { chooseDate } from "store/slices/currentDateSlice";
-import { StyledSlider, SliderContainer } from "./DatePicker.styled";
+import {
+  StyledSlider,
+  SliderContainer,
+  HighlightedMark,
+} from "./DatePicker.styled";
 import debounce from "debounce";
 import { currentDateSelector } from "store/slices/selectors";
 import { useCallback, useEffect, useState } from "react";
@@ -21,9 +25,8 @@ const DatePicker = ({ dates }: Props) => {
 
   const debouncedDispatch = useCallback(
     debounce((value: number) => {
-      console.log(value);
       dispatch(chooseDate(dates[value]));
-    }, 50),
+    }, 15),
     [dispatch, dates]
   );
 
@@ -31,12 +34,18 @@ const DatePicker = ({ dates }: Props) => {
     setSliderValue(dates.indexOf(currentDate) + 1);
   }, []);
 
+  const marks = dates.map((date, index) => ({
+    value: index + 1,
+    label: (
+      <HighlightedMark selected={date === currentDate}>{date}</HighlightedMark>
+    ),
+  }));
+
   return (
     <SliderContainer>
       <StyledSlider
         aria-label="Date picker"
         value={sliderValue}
-        getAriaLabel={() => "dasd"}
         color={"primary"}
         valueLabelDisplay="auto"
         valueLabelFormat={getValueLabel}
@@ -47,6 +56,7 @@ const DatePicker = ({ dates }: Props) => {
           setSliderValue(value as number);
         }}
         min={1}
+        marks={marks}
         max={dates.length}
       />
     </SliderContainer>
