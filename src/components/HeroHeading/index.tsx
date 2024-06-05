@@ -2,7 +2,7 @@ import { HeroTitle, Direction, HeroWrapper } from "./HeroHeading.styled";
 
 type Props = {
   direction?: string;
-  children: string;
+  children: string | number;
 };
 
 const HeroHeading = ({ children, direction = "Стратегічна ціль" }: Props) => {

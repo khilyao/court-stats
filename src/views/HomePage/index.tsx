@@ -29,6 +29,7 @@ const HomePage = () => {
       </LoaderWrapper>
     );
   }
+  const mainTitle = `План роботи секретаріату Касаційного цивільного суду на ${currentYear} рік`;
 
   return (
     <div
@@ -36,9 +37,7 @@ const HomePage = () => {
         marginTop: "50px",
       }}
     >
-      <HeroHeading direction="План">
-        План роботи секретаріату Касаційного цивільного суду на 2024 рік
-      </HeroHeading>
+      <HeroHeading direction="План">{mainTitle}</HeroHeading>
       <div style={{ margin: "20px 0 10px" }}>
         <DatePicker years={years} dates={dates} />
       </div>
