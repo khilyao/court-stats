@@ -13,7 +13,7 @@ import {
 } from "store/slices/selectors";
 import { useCallback, useEffect, useState } from "react";
 import { chooseYear } from "store/slices/currentYearSlice";
-
+import { useMediaQuery } from "hooks/useMediaQuery";
 interface Props {
   years: (string | number)[];
   dates: string[];
@@ -23,6 +23,7 @@ const DatePicker = ({ dates, years }: Props) => {
   const dispatch = useDispatch();
   const currentDate = useSelector(currentDateSelector);
   const currentYear = useSelector(currentYearSelector);
+  const isMedia1024 = useMediaQuery(1024);
   const [sliderValue, setSliderValue] = useState(
     dates.indexOf(currentDate) + 1
   );
@@ -74,7 +75,7 @@ const DatePicker = ({ dates, years }: Props) => {
           setSliderValue(value as number);
         }}
         min={1}
-        marks={marks}
+        marks={!isMedia1024 ? marks : []}
         max={dates.length}
       />
     </SliderContainer>
