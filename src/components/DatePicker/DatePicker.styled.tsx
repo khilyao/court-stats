@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Slider } from "@mui/material";
 
 export const SliderContainer = styled.div`
+  position: relative;
+
   background-color: #fafafa;
   padding: 20px;
 
@@ -61,4 +63,13 @@ export const HighlightedMark = styled.div<{ selected: boolean }>`
   font-size: 16px;
   transform: ${(props) => (props.selected ? "scale(1.1)" : "")};
   color: ${(props) => (props.selected ? "#2f2f97" : "black")};
+`;
+
+export const Select = styled.select`
+  position: absolute;
+  left: 10px;
+  top: 10px;
+
+  border: none;
+  background-color: transparent;
 `;

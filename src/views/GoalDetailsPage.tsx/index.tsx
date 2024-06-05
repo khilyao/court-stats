@@ -1,7 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { SubSection } from "types/directionsTypes";
 import { useSelector } from "react-redux";
-import { currentDateSelector } from "store/slices/selectors";
+import {
+  currentDateSelector,
+  currentYearSelector,
+} from "store/slices/selectors";
 import { recordsSelector } from "store/slices/selectors";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { motion } from "framer-motion";
@@ -31,12 +34,15 @@ const GoalDetailsPage = () => {
   const taskId = Number(goalId) - 1;
   const records = useSelector(recordsSelector);
   const currentDate = useSelector(currentDateSelector);
-  const directions = records.find(
+  const currentYear = useSelector(currentYearSelector);
+  const months = records.find(({ year }) => year === currentYear)?.months;
+
+  const directions = months?.find(
     ({ date }) => date === currentDate
   )?.directions;
 
   const goal = directions?.find(({ direction }) => direction === type);
-
+  console.log(goal);
   const goalTotalSections = goal ? goal.sections.length : 0;
   const totalResult = goal && goal.sections[taskId].result;
   const tasks = (goal ? goal.sections[taskId].subSections : []) as SubSection[];

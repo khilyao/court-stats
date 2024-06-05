@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Record } from "types/directionsTypes";
+import { Year } from "types/directionsTypes";
 
 interface RootState {
-  records: Record[];
+  records: Year[];
 }
 
 const initialState: RootState = {
@@ -13,7 +13,7 @@ const recordsSlice = createSlice({
   name: "records",
   initialState,
   reducers: {
-    initRecords(state, action: PayloadAction<Record[]>) {
+    initRecords(state, action: PayloadAction<Year[]>) {
       state.records = action.payload;
     },
   },

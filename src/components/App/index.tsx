@@ -10,8 +10,7 @@ import { useDispatch } from "react-redux";
 import { initRecords } from "store/slices/recordsSlice";
 import { get, ref } from "firebase/database";
 import { db } from "database/scripts/firebaseConfig";
-import { Record } from "types/directionsTypes";
-import { chooseDate } from "store/slices/currentDateSlice";
+import { Year } from "types/directionsTypes";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,11 +20,8 @@ const App = () => {
 
     get(recordsRef).then((snapshot) => {
       if (snapshot.exists()) {
-        const recordsArr: Record[] = snapshot.val();
-        const lastRecordIndex = recordsArr.length - 1;
-
+        const recordsArr: Year[] = snapshot.val();
         dispatch(initRecords(recordsArr));
-        dispatch(chooseDate(recordsArr[lastRecordIndex].date));
       } else {
         console.log("No data available");
       }

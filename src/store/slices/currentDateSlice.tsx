@@ -5,7 +5,7 @@ interface RootState {
 }
 
 const initialState: RootState = {
-  currentDate: "",
+  currentDate: "Квітень",
 };
 
 const currentDateSlice = createSlice({

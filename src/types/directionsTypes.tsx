@@ -21,3 +21,8 @@ export type Record = {
   date: string;
   directions: Direction[];
 };
+
+export type Year = {
+  year: number | string;
+  months: Record[];
+};

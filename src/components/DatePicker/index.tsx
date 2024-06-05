@@ -4,18 +4,25 @@ import {
   StyledSlider,
   SliderContainer,
   HighlightedMark,
+  Select,
 } from "./DatePicker.styled";
 import debounce from "debounce";
-import { currentDateSelector } from "store/slices/selectors";
+import {
+  currentDateSelector,
+  currentYearSelector,
+} from "store/slices/selectors";
 import { useCallback, useEffect, useState } from "react";
+import { chooseYear } from "store/slices/currentYearSlice";
 
 interface Props {
+  years: (string | number)[];
   dates: string[];
 }
 
-const DatePicker = ({ dates }: Props) => {
+const DatePicker = ({ dates, years }: Props) => {
   const dispatch = useDispatch();
   const currentDate = useSelector(currentDateSelector);
+  const currentYear = useSelector(currentYearSelector);
   const [sliderValue, setSliderValue] = useState(
     dates.indexOf(currentDate) + 1
   );
@@ -41,8 +48,19 @@ const DatePicker = ({ dates }: Props) => {
     ),
   }));
 
+  const handleSelectYear = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(chooseYear(Number(e.target.value)));
+  };
+
   return (
     <SliderContainer>
+      <Select name="year" onChange={handleSelectYear} value={currentYear}>
+        {years.map((year, index) => (
+          <option key={index} value={year}>
+            {year}
+          </option>
+        ))}
+      </Select>
       <StyledSlider
         aria-label="Date picker"
         value={sliderValue}
